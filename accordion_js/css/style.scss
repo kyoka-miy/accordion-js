@@ -1,0 +1,66 @@
+h1{
+    font-size: 18px;
+    border-bottom: 1px solid;
+    padding: 8px 16px;
+    margin-bottom: 16px;
+}
+dl{
+    margin: 0;
+
+    div{
+        margin-bottom: 8px;
+
+        &.appear{
+            dt{
+                &::after{
+                    transform: rotate(45deg);
+                }
+            }
+            dd{
+                display:block;
+                animation: .3s fadeIn;
+            }
+        }
+    }
+    
+}
+dt{
+    padding: 8px;
+    cursor: pointer;
+    user-select: none;
+    // テキストが選択されないようにする
+    position: relative;
+
+    &::before{
+        content: 'Q. ';
+    }
+
+    &::after{
+        content: '+';
+        position: absolute;
+        top: 8px;
+        right: 16px;
+        transition: transform .3s;
+    }
+}
+dd{
+    padding: 8px;
+    margin: 0;
+    display: none;
+
+    &::before{
+        content: 'A. ';
+    }
+}
+
+// display: none; の時はtransition（始まりの状態が必要）ではなくanimation（動き出しから設定可能）を使う
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    100% {
+        opacity: 1;
+        transform: none;
+    }
+}
